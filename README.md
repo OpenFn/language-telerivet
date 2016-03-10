@@ -11,7 +11,7 @@ Documentation
 ```js
 send(fields(
   field("to_number", dataValue("recipient_number")),
-  field("text", dataValue("recipient_text")),
+  field("content", dataValue("recipient_text")),
   // Lots of optional parameters...
   field("message_type", "sms"),
   field("route_id", dataValue("some_route")
@@ -23,7 +23,7 @@ send(fields(
 #### Current `sendBulk` expression:
 ```js
 send(fields(
-  field("text", dataValue("recipient_text")),
+  field("content", dataValue("recipient_text")),
   field("to_numbers", [
         "+14155550123",
         "+14255550234",
@@ -37,7 +37,7 @@ send(fields(
 
 Note that "recipient_text" may be a concatenation like this:
 ```js
-field("text", function (state) {
+field("content", function (state) {
           return (
             dataValue("salutation")(state).concat(
               ". ", dataValue("last_name")(state), ", )"

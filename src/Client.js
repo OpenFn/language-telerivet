@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-export function post({ username, password, body, url }) {
+export function post({ apiKey, body, url }) {
   return new Promise((resolve, reject) => {
     request.post(url)
     .type('json')
