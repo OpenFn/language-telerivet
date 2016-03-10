@@ -5,7 +5,7 @@ export function post({ username, password, body, url }) {
     request.post(url)
     .type('json')
     .accept('json')
-    .auth(username, password)
+    .auth(apiKey)
     .send(JSON.stringify(body))
     .end((error, res) => {
       if (!!error || !res.ok) {

@@ -1,88 +1,50 @@
 Language telerivet
 ==============
 
-Language Pack for building expressions and operations for working with
-the [telerivet API](http://telerivet.github.io/telerivet-docs/master/en/developer/html/telerivet_developer_manual.html).
+Language Pack for sending messages using the [telerivet API](https://telerivet.com/api/rest/curl).
 
 Documentation
 -------------
-## Events API
+## Send message
 
-#### Desired `Events API` expression:
+#### Current `send` expression:
 ```js
-events("program", "orgUnit", fields(
-  field(...),
-  field(...),
-  field(...),
-  dataValues(
-    field("dataElement", "value"),
-    field("dataElement", "value"),
-    field("dataElement", "value")
-  )
+send(fields(
+  field("to_number", dataValue("recipient_number")),
+  field("text", dataValue("recipient_text")),
+  // Lots of optional parameters...
+  field("message_type", "sms"),
+  field("route_id", dataValue("some_route")
 ))
 ```
 
-#### Current `Events API` expression—too bulky
-```js
-event(
-  fields(
-    field("program", "eBAyeGv0exc"),
-    field("orgUnit", "DiszpKrYNg8"),
-    field("eventDate", dataValue("date")),
-    field("status", "COMPLETED"),
-    field("storedBy", "admin"),
-    field("coordinate", {
-      "latitude": "59.8",
-      "longitude": "10.9"
-    }),
-    field("dataValues", function(state) {
-      return [
-        { "dataElement": "qrur9Dvnyt5", "value": dataValue("prop_a")(state) },
-        { "dataElement": "oZg33kd9taw", "value": dataValue("prop_b")(state) },
-        { "dataElement": "msodh3rEMJa", "value": dataValue("prop_c")(state) }
-      ]
-    })
-  )
-)
-```
+## sendBulk messages - WIP
 
-## Data Values / Data Value Sets API
-
-#### Desired `DataValueSets API` expression:
+#### Current `sendBulk` expression:
 ```js
-dataValueSet("dataSet", "orgUnit", fields(
-  field(...),
-  field(...),
-  field(...),
-  dataValues(
-    field("dataElement", "value"),
-    field("dataElement", "value"),
-    field("dataElement", "value")
-  )
+send(fields(
+  field("text", dataValue("recipient_text")),
+  field("to_numbers", [
+        "+14155550123",
+        "+14255550234",
+        "+16505550345"
+    ]
+  // Lots of optional parameters...
+  field("message_type", "sms"),
+  field("route_id", dataValue("some_route")
 ))
 ```
 
-#### Current `DataValueSets API` expression—too bulky
+Note that "recipient_text" may be a concatenation like this:
 ```js
-dataValueSet(
-  fields(
-    field("dataSet", "pBOMPrpg1QX"),
-    field("orgUnit", "DiszpKrYNg8"),
-    field("period", "201401"),
-    field("completeData", dataValue("date")),
-    field("dataValues", function(state) {
-      return [
-        { "dataElement": "f7n9E0hX8qk", "value": dataValue("prop_a")(state) },
-        { "dataElement": "Ix2HsbDMLea", "value": dataValue("prop_b")(state) },
-        { "dataElement": "eY5ehpbEsB7", "value": dataValue("prop_c")(state) }
-      ]
-    })
-  )
-)
+field("text", function (state) {
+          return (
+            dataValue("salutation")(state).concat(
+              ". ", dataValue("last_name")(state), ", )"
+            )
+          )
+        })
 ```
-
-[Docs](docs/index)
-
 
 Development
 -----------

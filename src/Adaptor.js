@@ -27,28 +27,28 @@ export function execute(...operations) {
 }
 
 /**
- * Create an event
+ * Send a message
  * @example
  * execute(
- *   event(data)
+ *   send(data)
  * )(state)
  * @constructor
- * @param {object} eventData - Payload data for the event
+ * @param {object} sendData - Payload data for the message
  * @returns {Operation}
  */
-export function event(eventData) {
+export function send(sendData) {
 
   return state => {
-    const body = expandReferences(eventData)(state);
+    const body = expandReferences(sendData)(state);
 
-    const { username, password, apiUrl } = state.configuration;
+    const { projectId, apiKey } = state.configuration;
 
-    const url = resolveUrl(apiUrl + '/', 'api/events')
+    const url = resolveUrl('https://api.telerivet.com/v1/projects/' + projectId, 'messages/send')
 
-    console.log("Posting event:");
+    console.log("Posting message to send:");
     console.log(body)
 
-    return post({ username, password, body, url })
+    return post({ apiKey, body, url })
     .then((result) => {
       console.log("Success:", result);
       return { ...state, references: [ result, ...state.references ] }
