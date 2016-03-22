@@ -14,7 +14,7 @@ send(fields(
   field("content", dataValue("recipient_text")),
   // Lots of optional parameters...
   field("message_type", "sms"),
-  field("route_id", dataValue("some_route")
+  field("route_id", dataValue("some_route"))
 ))
 ```
 
@@ -31,7 +31,7 @@ send(fields(
     ]
   // Lots of optional parameters...
   field("message_type", "sms"),
-  field("route_id", dataValue("some_route")
+  field("route_id", dataValue("some_route"))
 ))
 ```
 
