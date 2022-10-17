@@ -5,6 +5,16 @@ Language Pack for sending messages using the [telerivet API](https://telerivet.c
 
 Documentation
 -------------
+
+## Sample configuration
+
+```json
+{
+  "projectId": "telerivet_project_id",
+  "apiKey": "telerivetapikey"
+}
+```
+
 ## Send message
 
 #### Current `send` expression:
