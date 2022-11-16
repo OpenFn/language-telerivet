@@ -1,4 +1,9 @@
-Language telerivet
+# _⚠️ MOVED TO [OpenFn/adaptors](https://github.com/OpenFn/adaptors)! ⚠️_
+
+**N.B.: New versions are available at:
+https://github.com/OpenFn/adaptors/tree/main/packages/Telerivet**
+
+# Language Telerivet (Archived)
 ==============
 
 Language Pack for sending messages using the [telerivet API](https://telerivet.com/api/rest/curl).
